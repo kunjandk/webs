@@ -9,11 +9,16 @@ import java.util.Locale;
 
 @Service
 public class I18nService {
+
+    /** The application logger **/
+    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(I18nService.class);
+
     @Autowired
     MessageSource  messageSource;
     //Return a message from given messageId and the default locale in the session context
     //@param messageId the key to the message resource file.
     public String getMessage(String messageId){
+        LOG.info("Returning an i18n for messageId{} ",messageId);
         Locale locale = LocaleContextHolder.getLocale();
         return getMessage(messageId,locale);
     }
